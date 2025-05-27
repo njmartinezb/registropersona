@@ -108,21 +108,20 @@
 
                     <span class="mb-3 block">City</span>
                         @foreach ($cities as $city)
-
- <label for="city_{{ $city->id }}" class="flex items-center space-x-2">
-                <input
-                    id="city_{{ $city->id }}"
-                    name="city_id"
-                    type="radio"
-                    :value="old('city_id', $citizen->city_id)"
-                    class="h-4 w-4 text-indigo-600 dark:text-indigo-500 border-gray-300 focus:ring-indigo-500"
-                />
-                <span class="text-gray-700 dark:text-gray-200">
-                    {{ $city->name }}
-                </span>
-            </label>
+                            <label for="city_{{ $city->id }}" class="flex items-center space-x-2">
+                                <input
+                                    id="city_{{ $city->id }}"
+                                    name="city_id"
+                                    type="radio"
+                                    class="h-4 w-4 text-indigo-600 dark:text-indigo-500 border-gray-300 focus:ring-indigo-500"
+                                    value="{{$city->id}}"
+                                    @checked($city->id == $citizen->city_id)
+                                />
+                                <span class="text-gray-700 dark:text-gray-200">
+                                    {{ $city->name }}
+                                </span>
+                            </label>
                         @endforeach
-
                     </div>
  <div class="flex justify-center">
                             <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:bg-indigo-500 dark:hover:bg-indigo-600">
@@ -136,9 +135,9 @@
                 @endforeach
                 <!-- </div> --->
             </div>
-                <div class="mt-4">
+            <div class="mt-4">
                 {{ $citizens->links() }}
-                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>

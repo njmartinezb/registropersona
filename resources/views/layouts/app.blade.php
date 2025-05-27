@@ -14,6 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -33,5 +34,25 @@
                 {{ $slot }}
             </main>
         </div>
+        @if (session("success"))
+        <script>
+            Swal.fire({
+                title: "Action successful",
+                text : "{{ session("success") }}"
+                icon : "success",
+                draggable: true
+            })
+        </script>
+        @elseif (session("error"))
+        <script>
+            Swal.fire({
+                title: "Action Failed",
+                text : "{{ session("error") }}"
+                icon : "error",
+                draggable: true
+            })
+        </script>
+        @endif
+
     </body>
 </html>

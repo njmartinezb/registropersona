@@ -11,10 +11,9 @@ class CitizenController extends Controller
 
     public function index()
     {
-        //
         try{
             $citizens = Citizen::orderBy('first_name', 'asc')->paginate(6);
-        $cities = City::all();
+            $cities = City::all();
             return view('citizens.index',['citizens' => $citizens, 'cities' => $cities]);
         }catch(\Exception $e){
             return response()->json(['error' => 'Failed to fetch citizens: ' . $e->getMessage()], 500);
@@ -97,8 +96,9 @@ class CitizenController extends Controller
             ]);
 
 
-            $citizen = City::findOrFail($id);
+            $citizen = Citizen::findOrFail($id);
             $citizen->update($request->all());
+
             return redirect()->route('citizens.index')->with('success', 'Citizen updated successfully.');
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to update citizen: ' . $e->getMessage()], 500);

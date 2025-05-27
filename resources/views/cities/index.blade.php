@@ -108,9 +108,9 @@
                 @endforeach
                 <!-- </div> --->
             </div>
-                <div class="mt-4">
+            <div class="mt-4">
                 {{ $cities->links() }}
-                </div>
+            </div>
         </div>
     </div>
 </x-app-layout>
