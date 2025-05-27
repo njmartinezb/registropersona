@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\City;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CitiesExport;
+use Illuminate\Support\Facades\Response;
+
 
 class CityController extends Controller
 {
@@ -112,4 +116,36 @@ class CityController extends Controller
             return response()->json(['error' => 'Failed to delete city: ' . $e->getMessage()], 500);
         }
     }
+
+       
+    public function export($format)
+{
+    $cities = City::all();
+
+    if ($format === 'csv') {
+        $filename = 'cities.csv';
+        $headers = [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => "attachment; filename=\"$filename\"",
+        ];
+
+        $callback = function () use ($cities) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, ['Name', 'Description']);
+            foreach ($cities as $city) {
+                fputcsv($file, [$city->name, $city->description]);
+            }
+            fclose($file);
+        };
+
+        return Response::stream($callback, 200, $headers);
+    } elseif ($format === 'xls') {
+        return Excel::download(new CitiesExport, 'cities.xlsx');
+    }
+
+    return redirect()->route('cities.index')->with('error', 'Invalid export format.');
+}
+
+
+
 }

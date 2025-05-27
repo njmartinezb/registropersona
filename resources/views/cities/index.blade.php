@@ -10,6 +10,32 @@
         >
         Create City
         </a>
+    <div class="flex flex-row justify-between items-center">
+    <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        {{ __('Cities') }}
+    </h2>
+    <div class="flex gap-2">
+        <a
+            href="{{ route('cities.export', ['format' => 'csv']) }}"
+            class="text-gray-800 border p-2 rounded-md bg-white hover:text-white hover:bg-gray-800 transition"
+        >
+            Export CSV
+        </a>
+        <a
+            href="{{ route('cities.export', ['format' => 'xls']) }}"
+            class="text-gray-800 border p-2 rounded-md bg-white hover:text-white hover:bg-gray-800 transition"
+        >
+            Export XLS
+        </a>
+        <a
+            href="{{ route('cities.create') }}"
+            class="text-gray-800 border p-2 duration-300 rounded-md bg-white hover:text-white hover:bg-gray-800 transition"
+        >
+            Create City
+        </a>
+    </div>
+</div>
+
     </div>
     </x-slot>
     <div class="py-12">

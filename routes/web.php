@@ -23,4 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+# Export cities route
+Route::get('/cities/export/{format}', [CityController::class, 'export'])->name('cities.export');
+
+
 require __DIR__.'/auth.php';
