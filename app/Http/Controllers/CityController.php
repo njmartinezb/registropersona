@@ -117,15 +117,17 @@ class CityController extends Controller
         }
     }
 
-       
+    # New Export Function
     public function export($format)
 {
+    # Get all data
     $cities = City::all();
 
     if ($format === 'csv') {
-        $filename = 'cities.csv';
+        # Setting file name and headers
+        $filename = 'cities.csv'; 
         $headers = [
-            'Content-Type' => 'text/csv',
+            'Content-Type' => 'text/csv', 
             'Content-Disposition' => "attachment; filename=\"$filename\"",
         ];
 
