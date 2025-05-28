@@ -4,12 +4,27 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Citizens') }}
         </h2>
+            <div class="flex flex-row gap-4">
         <a
             href="{{route('citizens.create')}}"
             class="text-gray-800 border p-2 duration-300 rounded-md bg-white hover:text-white hover:bg-gray-800 transition"
         >
         Create Citizen
         </a>
+
+        <a
+            href="{{route('export.csv')}}"
+            class="text-gray-800 border p-2 duration-300 rounded-md bg-white hover:text-white hover:bg-gray-800 transition"
+        >
+            Export Citizens in CSV
+        </a>
+        <a
+            href="{{route('export.xlsx')}}"
+            class="text-gray-800 border p-2 duration-300 rounded-md bg-white hover:text-white hover:bg-gray-800 transition"
+        >
+            Export Citizens in XLSX
+        </a>
+            </div>
     </div>
     </x-slot>
     <div class="py-12">
