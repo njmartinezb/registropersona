@@ -133,7 +133,12 @@ class CityController extends Controller
 
         $callback = function () use ($cities) {
             $file = fopen('php://output', 'w');
-            fputcsv($file, ['Name', 'Description']);
+            # fputcsv function useful when the Data has an extra ','
+            # Ex. 
+            # Name -> Managua, Nicaragua
+            # Description -> La Capital
+            # Prevent the file from getting corrupted by extra spaces or ','
+            fputcsv($file, ['Name', 'Description']); # Putting Headers File
             foreach ($cities as $city) {
                 fputcsv($file, [$city->name, $city->description]);
             }
