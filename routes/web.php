@@ -16,6 +16,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    # Export citizens route
     Route::get("/citizens-report/csv", [CitizenExportController::class, 'get_csv_report'])->name("export.csv");
     Route::get("/citizens-report/xlsx", [CitizenExportController::class, 'get_xlsx_report'])->name("export.xlsx");
 
