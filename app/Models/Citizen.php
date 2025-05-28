@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Citizen extends Model
 {
+
     protected $fillable = [
         'first_name',
         'last_name',
@@ -16,6 +17,7 @@ class Citizen extends Model
         'phone',
     ];
 
+    //Adding city relationship
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);

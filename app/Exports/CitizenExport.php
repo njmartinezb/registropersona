@@ -9,11 +9,13 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class CitizenExport implements FromCollection, WithMapping,WithHeadings
 {
+    //defining data to build report with
    public function collection()
     {
         return Citizen::with('city')->get();
     }
 
+    //mapping function to map fields to columns
     public function map($citizen): array
     {
         return [
@@ -26,6 +28,7 @@ class CitizenExport implements FromCollection, WithMapping,WithHeadings
         ];
     }
 
+    //defining headers
     public function headings(): array
     {
         return [
